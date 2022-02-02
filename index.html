@@ -2,54 +2,73 @@
 
 <head>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
-    <h1>CSS-only Carousel</h1>
 
-    <p>This carousel is created with HTML and CSS only.</p>
+    <div class="slideshow-container">
 
-    <section class="carousel" aria-label="Gallery">
-        <ol class="carousel__viewport">
-            <li id="carousel__slide1" tabindex="0" class="carousel__slide">
-                <div class="carousel__snapper">
-                    <a href="#carousel__slide4" class="carousel__prev">Go to last slide</a>
-                    <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
-                </div>
-            </li>
-            <li id="carousel__slide2" tabindex="0" class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
-            </li>
-            <li id="carousel__slide3" tabindex="0" class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide4" class="carousel__next">Go to next slide</a>
-            </li>
-            <li id="carousel__slide4" tabindex="0" class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide3" class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
-            </li>
-        </ol>
-        <aside class="carousel__navigation">
-            <ol class="carousel__navigation-list">
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide4" class="carousel__navigation-button">Go to slide 4</a>
-                </li>
-            </ol>
-        </aside>
-    </section>
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="img/rosa.png" id="rosa">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="img/lilas.png" id="lilas">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="img/vermelho.png" id="vermelho">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+
 </body>
 
 </html>
